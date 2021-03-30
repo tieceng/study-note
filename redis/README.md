@@ -17,6 +17,7 @@ redis 的单线程只要是只 redis 的网络 IO 和键值对读写是由一个
 日常写程序时，使用多线程有一下优点“使用多线程，可以增加系统吞吐率，看也增加系统拓展性”，在合理的资源分配情况下，增加系统中处理请求操作的资源你尸体，进而提升系统能够处理的请求书，即吞吐率。
 
 <img src="/Users/tiechenglong/Library/Caches/BaiduMacHi/Share/images/ab9a384d70578236800ceaa8e58ff45c.jpeg" alt="ab9a384d70578236800ceaa8e58ff45c" style="zoom:25%;" />
+![image](https://user-images.githubusercontent.com/19903677/113002322-3bddfc80-91a4-11eb-90e4-2562b78a96c4.png)
 
 
 
