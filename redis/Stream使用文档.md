@@ -8,7 +8,8 @@
 - stream和lists数据结构没什么太大的不同，就是附加的特性、API更复杂，更强大
 - 我们还可以使用一种完全不同的方式来看待一个Stream：不是作为一个消息传递系统，而是作为一个*时间序列存储*。
 
-![img](C:\Users\chenglong14\Desktop\20201204143228844.png)
+![20201204143228844](https://user-images.githubusercontent.com/19903677/133588735-3a1c30a2-dbf8-4a55-8adb-5d86cef43c25.png)
+
 
 #### 二、stream的增删改查
 
