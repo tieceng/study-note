@@ -1,3 +1,7 @@
+### 含义
+
+获取键盘键入的类型
+
 ### 使用方法
 
 - 导包：import java.util.Scanner;
