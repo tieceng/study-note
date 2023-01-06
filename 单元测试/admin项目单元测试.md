@@ -10,6 +10,11 @@
 
 ./vendor/bin/phpunit
 
+测试目录
+admin.s.weibo.com/test/app/Service/IndexTest.php
+
+查看覆盖率文件地址
+/data1/apache2/htdocs/tmp/
 ```
 
 
@@ -59,5 +64,52 @@ https://gist.github.com/Zhwt/905404fea48a8d3e70823d4f6421d3a5
 
 </phpunit>
 
+```
+
+##### 实现方法函数 mock
+
+```
+<?php
+use PHPUnit\Framework\TestCase;
+use app\common\service\huati\QueryShieldService;
+use app\common\model\huati\TopicShieldModel;
+class IndexTest extends TestCase
+{
+
+    public function testSomethingIsTrue()
+    {
+
+        $param =[
+            'topic' => '我要报bug',
+            'shield_words' => '我是屏蔽词'
+        ];
+
+//        $stub = $this->getMockBuilder('TopicShieldModel');
+//        $stub->setMethods(['edit','insertAll'])
+//            ->getMock();
+//            ->willReturn('edit=====');
+
+
+        $stub = $this->getMockBuilder(TopicShieldModel::class)
+            ->setMethods(['edit','insertAll'])
+            ->getMock();
+
+
+        $stub->method('insertAll')
+            ->willReturn('insertAll=====1111');
+
+        // 配置桩件。
+        $stub->method('edit')
+            ->willReturn('edit=====1111');
+
+        $QueryShieldService = new QueryShieldService();
+        $QueryShieldService->TopicShieldModel = $stub;
+        $res = $QueryShieldService->add($param);
+        var_dump($res);die;
+        $this->assertEquals($param,$res);
+
+    }
+
+}
 ```
 
