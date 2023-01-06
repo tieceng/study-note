@@ -73,6 +73,7 @@ https://gist.github.com/Zhwt/905404fea48a8d3e70823d4f6421d3a5
 use PHPUnit\Framework\TestCase;
 use app\common\service\huati\QueryShieldService;
 use app\common\model\huati\TopicShieldModel;
+use app\common\helper\Mc;
 class IndexTest extends TestCase
 {
 
@@ -84,29 +85,27 @@ class IndexTest extends TestCase
             'shield_words' => '我是屏蔽词'
         ];
 
-//        $stub = $this->getMockBuilder('TopicShieldModel');
-//        $stub->setMethods(['edit','insertAll'])
-//            ->getMock();
-//            ->willReturn('edit=====');
-
-
         $stub = $this->getMockBuilder(TopicShieldModel::class)
             ->setMethods(['edit','insertAll'])
             ->getMock();
-
-
-        $stub->method('insertAll')
-            ->willReturn('insertAll=====1111');
-
         // 配置桩件。
         $stub->method('edit')
-            ->willReturn('edit=====1111');
+            ->willReturn(true);
+        $stub->method('insertAll')
+            ->willReturn(true);
 
-        $QueryShieldService = new QueryShieldService();
+
+        $QueryShieldService = $this->getMockBuilder(QueryShieldService::class)
+            ->setMethods(['addChangeQueue'])
+            ->getMock();
+        // 配置桩件。
+        $QueryShieldService->method('addChangeQueue')
+            ->willReturn(true);
+
+//        $QueryShieldService = new QueryShieldService();
         $QueryShieldService->TopicShieldModel = $stub;
         $res = $QueryShieldService->add($param);
-        var_dump($res);die;
-        $this->assertEquals($param,$res);
+        $this->assertTrue($res);
 
     }
 
