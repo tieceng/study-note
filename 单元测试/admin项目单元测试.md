@@ -77,35 +77,60 @@ use app\common\helper\Mc;
 class IndexTest extends TestCase
 {
 
-    public function testSomethingIsTrue()
+    private $TopicShieldModel ;
+    private $QueryShieldService ;
+    public function setUp(){
+        $this->TopicShieldModel = $this->getMockBuilder(TopicShieldModel::class)->setMethods(['edit','insertAll'])->getMock();
+        $this->QueryShieldService =$this->getMockBuilder(QueryShieldService::class)->setMethods(['addChangeQueue'])->getMock();
+    }
+    public  function SomethingIsTrue(){
+
+        return [
+            [
+                [
+                    'topic' => '',
+                ],
+                []
+            ],
+            [
+                [
+                    'topic' => '我要报bug',
+                    'shield_words' => '',
+                ],
+                true
+            ]
+            ,
+            [
+                [
+                    'topic' => '我要报bug',
+                    'shield_words' => '我是屏蔽词',
+                ],
+                true
+            ]
+            ,
+        ];
+    }
+    /**
+     * @dataProvider SomethingIsTrue
+     */
+    public function testSomethingIsTrue($params, $equals)
     {
 
-        $param =[
-            'topic' => '我要报bug',
-            'shield_words' => '我是屏蔽词'
-        ];
-
-        $stub = $this->getMockBuilder(TopicShieldModel::class)
-            ->setMethods(['edit','insertAll'])
-            ->getMock();
         // 配置桩件。
-        $stub->method('edit')
-            ->willReturn(true);
-        $stub->method('insertAll')
-            ->willReturn(true);
+         $this->TopicShieldModel->method('edit')->willReturn(true);
+         $this->TopicShieldModel->method('insertAll')->willReturn(true);
+
+        $this->QueryShieldService->method('addChangeQueue')->willReturn(true);
 
 
-        $QueryShieldService = $this->getMockBuilder(QueryShieldService::class)
-            ->setMethods(['addChangeQueue'])
-            ->getMock();
+        $QueryShieldService = $this->QueryShieldService;
         // 配置桩件。
-        $QueryShieldService->method('addChangeQueue')
-            ->willReturn(true);
 
 //        $QueryShieldService = new QueryShieldService();
-        $QueryShieldService->TopicShieldModel = $stub;
-        $res = $QueryShieldService->add($param);
-        $this->assertTrue($res);
+        $QueryShieldService->TopicShieldModel = $this->TopicShieldModel;
+
+        $res = $QueryShieldService->add($params);
+        $this->assertEquals($equals, $res);
 
     }
 
