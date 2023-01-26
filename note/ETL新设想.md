@@ -21,5 +21,10 @@ redis
 	定义请求方式（GET、POST)
 	定义 oauth 协议，
 	定义参数形式
+	
+  实现方式
+  	暴露给前端的参数：（配置索引，数据实体，customize_config（修改配置索引中的系数））
+  	底层：curl、PDO、Redis-cli
+  	
 ```
 
