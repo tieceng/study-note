@@ -51,27 +51,38 @@ https://gist.github.com/Zhwt/905404fea48a8d3e70823d4f6421d3a5
                 </testsuite>
         </testsuites>
 
+
         <filter>
                 <whitelist addUncoveredFilesFromWhitelist="false">
-                        <directory suffix=".php">/data1/apache2/htdocs/admin.s.weibo.com/test/app/Service/</directory>
-                        <file>/data1/apache2/htdocs/admin.s.weibo.com/test/app/Service/IndexTest</file>
-                        <directory suffix=".php">/data1/apache2/htdocs/admin.s.weibo.com/application/common/service/huati/</directory>
-                        <file>/data1/apache2/htdocs/admin.s.weibo.com/application/common/service/huati/QueryShieldService</file>
+<!--                        <directory suffix=".php">/data1/apache2/htdocs/admin.s.weibo.com/test/app/Service/</directory>-->
+<!--                        <file>/data1/apache2/htdocs/admin.s.weibo.com/test/app/Service/IndexTest</file>-->
+<!--                        <directory suffix=".php">/data1/apache2/htdocs/admin.s.weibo.com/application/common/service/huati/</directory>-->
+                        <file>/data1/apache2/htdocs/admin.s.weibo.com/application/common/service/huati/QueryShieldService.php</file>
+                        <file>/data1/apache2/htdocs/admin.s.weibo.com/application/common/service/hotRank/RankSnap.php</file>
+
+<!--                        <exclude>-->
+<!--                                <directory suffix=".php">/data1/apache2/htdocs/admin.s.weibo.com/application/common/service/huati</directory>-->
+<!--                                <file>/data1/apache2/htdocs/admin.s.weibo.com/application/common/service/huati/QueryManageService.php</file>-->
+<!--                        </exclude>-->
                 </whitelist>
         </filter>
 
         <logging>
                 <log type="coverage-html" target="/data1/apache2/htdocs/tmp/" lowUpperBound="35"
                      highLowerBound="70"/>
-<!--                <log type="coverage-clover" target="/data1/apache2/htdocs/tmp/coverage.xml"/>-->
+                <log type="coverage-clover" target="/data1/apache2/htdocs/tmp/coverage.xml"/>
 <!--                <log type="coverage-php" target="/data1/apache2/htdocs/tmp//coverage.serialized"/>-->
-<!--                <log type="coverage-text" target="php://stdout" showUncoveredFiles="false"/>-->
-<!--                <log type="junit" target="/data1/apache2/htdocs/tmp//logfile.xml" logIncompleteSkipped="false"/>-->
+                <log type="coverage-text" target="php://stdout" showUncoveredFiles="false"/>
+
+                <!--                <log type="junit" target="/data1/apache2/htdocs/tmp//logfile.xml" logIncompleteSkipped="false"/>-->
 <!--                <log type="testdox-html" target="/data1/apache2/htdocs/tmp//testdox.html"/>-->
-<!--                <log type="testdox-text" target="/data1/apache2/htdocs/tmp//testdox.txt"/>-->
+<!--                <log type="testdox-text" target="/data1/apache2/htdocs/tmp/testdox.txt"/>-->
         </logging>
 
 </phpunit>
+
+
+//whitelist.directory|file 两个是并列关系，可以引入文件夹 或者 指定文件
 
 ```
 
