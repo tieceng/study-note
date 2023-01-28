@@ -1,11 +1,20 @@
 # study-note
 自己的学习笔记
 
+#### phpunit 官方文档
+
+```
+https://phpunit.de/manual/6.5/en/appendixes.configuration.html#appendixes.configuration.logging
+```
+
+
+
 #### 执行命令
 
 ##### 命令行，执行 目录下所有 *Test 文件，不符合命名 则不会计算覆盖率
 
 ```
+ps: docker exec -it phpunit bash 
 在项目根目录下 执行 
 
 ./vendor/bin/phpunit
