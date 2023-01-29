@@ -9,6 +9,18 @@ https://phpunit.de/manual/6.5/en/appendixes.configuration.html#appendixes.config
 
 
 
+#### 修改 xml 文件内容
+
+```
+
+$xml = simplexml_load_file('phpunit.xml');
+
+var_dump(((array)$xml->filter->whitelist->directory)[0]); die;
+
+```
+
+
+
 #### 执行命令
 
 ##### 命令行，执行 目录下所有 *Test 文件，不符合命名 则不会计算覆盖率
