@@ -19,6 +19,37 @@ var_dump(((array)$xml->filter->whitelist->directory)[0]); die;
 
 ```
 
+##### 转换为 json
+
+```
+<?php
+function XML2JSON($xml) {
+
+        function normalizeSimpleXML($obj, &$result) {
+            $data = $obj;
+            if (is_object($data)) {
+                $data = get_object_vars($data);
+            }
+            if (is_array($data)) {
+                foreach ($data as $key => $value) {
+                    $res = null;
+                    normalizeSimpleXML($value, $res);
+                    if (($key == '@attributes') && ($key)) {
+                        $result = $res;
+                    } else {
+                        $result[$key] = $res;
+                    }
+                }
+            } else {
+                $result = $data;
+            }
+        }
+        normalizeSimpleXML(simplexml_load_string($xml), $result);
+        return json_encode($result);
+    }
+?>
+```
+
 
 
 #### 执行命令
