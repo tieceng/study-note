@@ -52,6 +52,65 @@ function XML2JSON($xml) {
 
 
 
+ 新版 xml
+
+```
+最终 phpunit.xml
+
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/9.5/phpunit.xsd"
+         bootstrap="test/Ainit.php"
+         executionOrder="depends,defects"
+         beStrictAboutCoversAnnotation="true"
+         beStrictAboutOutputDuringTests="true"
+         beStrictAboutTodoAnnotatedTests="true"
+         convertDeprecationsToExceptions="true"
+         failOnRisky="true"
+         failOnWarning="true"
+         verbose="true"
+         colors="true">
+    <testsuites>
+        <testsuite name="default">
+            <directory>tests</directory>
+        </testsuite>
+    </testsuites>
+
+    <coverage cacheDirectory=".phpunit.cache/code-coverage"
+              includeUncoveredFiles="true"
+              processUncoveredFiles="false"
+              pathCoverage="false"
+              ignoreDeprecatedCodeUnits="true"
+              disableCodeCoverageIgnore="true">
+        <include>
+<!--            <directory suffix=".php">./application/common/service/huati/</directory>-->
+                <file>./application/common/service/huati/QueryManageService.php</file>
+        </include>
+        <report>
+<!--            <clover outputFile="./tmp/clover.xml"/>-->
+<!--            <cobertura outputFile="./tmp/cobertura.xml"/>-->
+<!--            <crap4j outputFile="./tmp/crap4j.xml" threshold="50"/>-->
+            <html outputDirectory="./tmp/html-coverage" lowUpperBound="50" highLowerBound="90"/>
+<!--            <php outputFile="./tmp/coverage.php"/>-->
+            <text outputFile="php://stdout" showUncoveredFiles="false" showOnlySummary="true"/>
+<!--            <xml outputDirectory="xml-coverage"/>-->
+        </report>
+    </coverage>
+
+    <logging>
+<!--        <junit outputFile="./tmp/junit.xml"/>-->
+        <!--                <teamcity outputFile="./tmp/teamcity.txt"/>-->
+        <!--                <testdoxHtml outputFile="./tmp/testdox.html"/>-->
+        <!--                <testdoxText outputFile="./tmp/testdox.txt"/>-->
+        <!--                <testdoxXml outputFile="./tmp/testdox.xml"/>-->
+        <text outputFile="php://stdout"/>
+    </logging>
+</phpunit>
+
+```
+
+
+
 #### 执行命令
 
 ##### 命令行，执行 目录下所有 *Test 文件，不符合命名 则不会计算覆盖率
@@ -200,3 +259,6 @@ class IndexTest extends TestCase
 }
 ```
 
+
+
+#### 
