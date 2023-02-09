@@ -1,6 +1,15 @@
 # study-note
 自己的学习笔记
 
+#### 注意执行文件的目录问题
+
+```
+cd /data1/nginx/htdocs/admin.s.weibo.com
+./vendor/bin/phpunit
+```
+
+
+
 #### phpunit 官方文档
 
 ```
@@ -259,6 +268,3 @@ class IndexTest extends TestCase
 }
 ```
 
-
-
-#### 
